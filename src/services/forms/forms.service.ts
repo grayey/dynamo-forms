@@ -12,12 +12,12 @@ export class FormsService{
 
   /**
    *
-   * @param paymentData
-   * This method makes a credit card payment
+   * @param credentials
+   * This method logs a user into the form.io platform
    */
-  public makePayment =  (paymentData): Observable<any> => {
-    const url = 'credit-card-pay';
-    return  this.apiHandler.post(url, paymentData);
+  public authenticate =  (credentials): Observable<any> => {
+    const url = 'login';
+    return  this.apiHandler.post(url, credentials);
   }
 
 

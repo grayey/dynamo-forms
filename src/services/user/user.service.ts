@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoggedInUser } from '../../dtos/user.dto';
 import CONSTANTS  from '../../utils/constants';
 
 @Injectable()
@@ -24,7 +23,7 @@ export class UserService {
    * This method returns the logged in user's jwt token
    */
   public getAuthUserToken():string{
-    return 'FILED_USER_TOKEN';
+    return 'CODEIQ_USER_TOKEN';
   }
 
 
@@ -41,11 +40,11 @@ export class UserService {
     /**
    * This is used to get authenticated user object from cache
    */
-  public getAuthUser(): LoggedInUser {
+  public getAuthUser() {
     return {
       first_name:"Test",
       last_name:"User",
-      email:"test.user@filed.com",
+      email:"test.user@codeiq.ng",
     }
 
   }

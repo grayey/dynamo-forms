@@ -4,16 +4,10 @@
 
 export const environment = {
   API_KEY:"",
-  API_BASE_URL:"http://localhost:8000/api/",
+  API_BASE_URL:"http://localhost:5000/api/",
+  FORMIO_PROJECT_URL:"https://iisyskvcoctczgc.form.io",
+  FORMIO_API_URL:"https://api.form.io/",
   production: false,
 
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
