@@ -5,7 +5,8 @@
 export const environment = {
   API_KEY:"",
   API_BASE_URL:"http://localhost:5000/api/",
-  FORMIO_PROJECT_URL:"https://iisyskvcoctczgc.form.io",
+  FORMIO_LOGIN_URL:"https://formio.form.io/",
+  FORMIO_PROJECT_URL:"https://iisyskvcoctczgc.form.io/",
   FORMIO_API_URL:"https://api.form.io/",
   production: false,
 

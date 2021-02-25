@@ -30,7 +30,7 @@ export class DashboardSidebarComponent implements OnInit, AfterViewInit {
       "colVis.js",
       "dataTableResponsive.js",
       "boostrap4Responsive.js",
-      "dataTableInit.js", // remove this
+      // "dataTableInit.js", // remove this
     ];
 
     $(document).ready(()=>{

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsService } from '../../../../services/forms/forms.service';
 import { AuthCredentials } from '../config';
+import { tableRun, tableRerender } from '../../../../utils/helpers';
 
 @Component({
   selector: 'app-formio',
@@ -13,11 +14,17 @@ export class AppFormioComponent implements OnInit {
     this.authenticate();
   }
 
-  ngOnInit(): void {
-  }
+  public boilerPlate = {
+    components: []
+   }
 
-  onSubmit(submission) {
-    alert(submission);
+   public allForms = [];
+   public loaders = {
+    fetching: false
+   }
+
+
+  public ngOnInit(): void {
   }
 
 
@@ -25,12 +32,33 @@ export class AppFormioComponent implements OnInit {
    * This method attempts to log a user into the formio platform
    */
   private authenticate = async () => {
+    this.loaders.fetching = true;
     await this.formsService.authenticate(AuthCredentials).subscribe(
-      (loginResponse)=>{
-        console.log({loginResponse})
-    },
+     async (loginResponse)=>{
+        await this.getAllForms();
+      },
     (error)=>{
+    this.loaders.fetching = false;
       console.error('Error');
     })
   }
+
+  /**
+   * This method list all forms in the current project
+   */
+  private getAllForms = async() => {
+    await this.formsService.getAllForms().subscribe(
+      (allForms)=>{
+      this.allForms = allForms;
+      this.loaders.fetching = false;
+      if(this.allForms.length){
+        tableRun(this.allForms, 'forms_list')
+      }
+    },
+    (error)=>{
+      this.loaders.fetching = false;
+      console.error('Form response Error');
+    })
+  }
+
 }

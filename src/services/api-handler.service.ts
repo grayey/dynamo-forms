@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,  } from '@angular/common/http';
+import { HttpClient,} from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 
 import { ApiConfig } from '../utils/config';
@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class ApiHandlerService extends ApiConfig{
 
-  private static API_BASE_URL = environment.API_BASE_URL;
+  public static API_BASE_URL = environment.API_BASE_URL;
 
   constructor(private http: HttpClient, userService: UserService) {
     super(userService);
@@ -33,7 +33,7 @@ export class ApiHandlerService extends ApiConfig{
           .take(2);
       })
       .catch(this.errorHandler)
-      .map((res) => res);
+      .map((res) => res['body']);
   }
 
 
@@ -55,7 +55,13 @@ export class ApiHandlerService extends ApiConfig{
           .take(2);
       })
       .catch(this.errorHandler)
-      .map((res) => res);
+      .map((res) => {
+        const X_JWT_TOKEN = res['headers'].get('x-jwt-token');
+        if(X_JWT_TOKEN){
+          localStorage.setItem('X_JWT_TOKEN', X_JWT_TOKEN)
+        }
+        return res['body'];
+      });
   }
 
 
@@ -78,7 +84,7 @@ export class ApiHandlerService extends ApiConfig{
           .take(2);
       })
       .catch(this.errorHandler)
-      .map((res) => res);
+      .map((res) => res['body']);
   }
 
 
@@ -99,7 +105,7 @@ export class ApiHandlerService extends ApiConfig{
           .take(2);
       })
       .catch(this.errorHandler)
-      .map((res) => res);
+      .map((res) => res['body']);
   }
 
 

@@ -12,7 +12,7 @@ export class ApiConfig{
   constructor(private userService: UserService) {
 
     this.headers = {
-      headers: this.setHeaders()
+      headers: this.setHeaders(), observe:'response'
      }
 
   }
@@ -37,6 +37,11 @@ export class ApiConfig{
     }
     if (ApiConfig.API_KEY) {
       headersConfig['API-KEY'] = ApiConfig.API_KEY;
+    }
+    const X_JWT_TOKEN = localStorage.getItem('X_JWT_TOKEN');
+    console.log({ X_JWT_TOKEN })
+    if(X_JWT_TOKEN){
+      headersConfig['x-jwt-token'] = X_JWT_TOKEN;
     }
     return headersConfig;
   }

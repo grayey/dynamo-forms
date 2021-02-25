@@ -12,7 +12,7 @@ const DASHBOARD_ROUTES:Routes = [
         component:DashboardHomeComponent,
       },
       {
-        path:'form-builder',
+        path:'forms',
         loadChildren: async () => (await import("./dynamic-forms/dynamic-forms.module")).DynamicFormsModule
       }
     ]

@@ -7,6 +7,6 @@ export const AppConfig: FormioAppConfig = {
 
 
 export const AuthCredentials = {
-  email:'ee@codeiq.ng',
+  email:'bluegrayonics@gmail.com',
   password:'codeiq123'
 }
