@@ -1,1 +1,84 @@
-<p>edit works!</p>
+
+                <div class="page-content">
+                  <div class="container-fluid">
+
+
+                      <div class='row pb-2 border-bottom'>
+                        <div class='col-md-12'>
+
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                                  <li class="breadcrumb-item"><a routerLink="/dashboard/forms">Forms</a></li>
+                                  <li class="breadcrumb-item active" aria-current="page">{{appForm?.form_title}}</li>
+                                </ol>
+                              </nav>
+
+                        </div>
+
+
+                      </div>
+                      <!-- <formio src="https://iisyskvcoctczgc.form.io/demographics" (submit)="onSubmit($event.value)"></formio> -->
+
+                      <div class="row">
+                          <div class="col-12">
+                            <form [formGroup]="customForm" (ngSubmit)="editCustomForm()">
+                              <div class="card">
+                                <div class="card-header">
+                                  <h3> <em>{{appForm?.form_title}} </em></h3>
+                                </div>
+                                  <div class="card-body">
+                                    <div class='row'>
+
+                                      <div class='col-md-4'>
+                                        <label class='font-weight-bold'>Title<span class="text-danger" *ngIf="hasRequiredField(customForm.get('title'))">*</span>
+                                          </label>
+                                        <input  formControlName='title' class='form-control' type='text' />
+                                       <div *ngIf="customForm.get('title').touched && customForm.get('title').invalid" class='text-danger'><small>Title is required.</small></div>
+                                      </div>
+
+                                      <div class='col-md-4'>
+                                        <label class='font-weight-bold'>Name<span class="text-danger" *ngIf="hasRequiredField(customForm.get('name'))">*</span>
+                                          <small *ngIf="loaders?.verifying"> <i class="fa fa-spinner fa-spin"></i></small>
+                                        </label>
+                                        <select formControlName='name' (change)="getFormFromFormioByName(formName.value)" #formName class="form-control">
+                                          <option>Select a name</option>
+                                          <option *ngFor="let form_name of formNames" [value]="form_name">
+                                            {{form_name}}
+                                          </option>
+                                        </select>
+                                       <div *ngIf="customForm.get('name').touched && customForm.get('name').invalid" class='text-danger'><small>Name is required.</small></div>
+                                      </div>
+
+                                      <div class='col-md-4'>
+                                        <label class='font-weight-bold'>Type<span class="text-danger" *ngIf="hasRequiredField(customForm.get('form_type'))">*</span></label>
+                                        <input  formControlName='form_type' readonly class='form-control' type='text' />
+                                       <div *ngIf="customForm.get('form_type').touched && customForm.get('form_type').invalid" class='text-danger'><small>Type is required.</small></div>
+                                      </div>
+
+                                    </div>
+
+                                  <hr/>
+                                  <form-builder [form]="formPath" (load)="onLoad($event)" (change)="onFormBuilderChange($event)"></form-builder>
+
+                                  </div>
+                                  <div class='card-footer'>
+                                    <button class='btn btn-{{customForm.invalid || !formioFormObject?.components?.length || !canUpdate ? "secondary":"success"}} float-right' type="submit" [disabled]="customForm.invalid || loaders?.processing || !formioFormObject?.components?.length || !canUpdate || loaders?.verifying" >
+                                      {{loaders?.msg}}
+                                      <i class='fa fa-save' *ngIf="!loaders?.processing"></i>
+                                      <i class="fa fa-spinner fa-spin" *ngIf="loaders?.processing"></i>
+                                     </button>
+
+                                  </div>
+
+                              </div>
+                            </form>
+                          </div>
+                          <!-- end col -->
+                      </div>
+                      <!-- end row -->
+
+                  </div>
+                  <!-- container-fluid -->
+              </div>
+              <!-- End Page-content -->

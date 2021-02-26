@@ -28,7 +28,7 @@ export default class DashboardIndexComponent implements OnInit, AfterViewInit {
     ];
 
     $(document).ready(()=>{
-        this.lazy.loadScripts('app-dashboard-index',DASHBOARD_SCRIPTS, true).then((loaded)=>{
+        this.lazy.loadScripts('app-dashboard-index',DASHBOARD_SCRIPTS,true).then((loaded)=>{
           console.log({loaded})
         }).catch((failed)=>{
           console.log({ failed })

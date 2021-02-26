@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { LazyLoadScriptService } from '../../../../../services/lazy-load-scripts.service';
+import { Router } from "@angular/router";
+
 
 declare const $:any;
 
@@ -10,7 +12,7 @@ declare const $:any;
 })
 export class DashboardSidebarComponent implements OnInit, AfterViewInit {
 
-  constructor(private lazy:LazyLoadScriptService) { }
+  constructor(private lazy:LazyLoadScriptService, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -40,6 +42,17 @@ export class DashboardSidebarComponent implements OnInit, AfterViewInit {
           console.log({ failed })
         })
     })
+  }
+
+
+  /**
+   *
+   * @param path
+   * this method reroutes.
+   * Serves the purpose of routerLink
+   */
+  public reRoute = (path:string):void =>{
+    this.router.navigateByUrl(path);
   }
 
 }

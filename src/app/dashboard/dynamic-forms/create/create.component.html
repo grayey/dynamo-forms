@@ -29,22 +29,30 @@
                                 </div>
                                   <div class="card-body">
                                     <div class='row'>
+
                                       <div class='col-md-4'>
                                         <label class='font-weight-bold'>Title<span class="text-danger" *ngIf="hasRequiredField(customForm.get('title'))">*</span></label>
                                         <input  formControlName='title' class='form-control' type='text' />
                                        <div *ngIf="customForm.get('title').touched && customForm.get('title').invalid" class='text-danger'><small>Title is required.</small></div>
                                       </div>
+
                                       <div class='col-md-4'>
                                         <label class='font-weight-bold'>Name<span class="text-danger" *ngIf="hasRequiredField(customForm.get('name'))">*</span></label>
-                                        <input  formControlName='name' class='form-control' type='text' />
+                                        <select formControlName='name' class="form-control">
+                                          <option>Select a name</option>
+                                          <option *ngFor="let form_name of formNames" [value]="form_name">
+                                            {{form_name}}
+                                          </option>
+                                        </select>
                                        <div *ngIf="customForm.get('name').touched && customForm.get('name').invalid" class='text-danger'><small>Name is required.</small></div>
+                                      </div>
 
-                                      </div>
                                       <div class='col-md-4'>
-                                        <label class='font-weight-bold'>Form Type<span class="text-danger" *ngIf="hasRequiredField(customForm.get('form_type'))">*</span></label>
+                                        <label class='font-weight-bold'>Type<span class="text-danger" *ngIf="hasRequiredField(customForm.get('form_type'))">*</span></label>
                                         <input  formControlName='form_type' readonly class='form-control' type='text' />
-                                       <div *ngIf="customForm.get('form_type').touched && customForm.get('form_type').invalid" class='text-danger'><small>Form type is required.</small></div>
+                                       <div *ngIf="customForm.get('form_type').touched && customForm.get('form_type').invalid" class='text-danger'><small>Type is required.</small></div>
                                       </div>
+
                                     </div>
 
                                   <hr/>
@@ -55,7 +63,7 @@
                                     <button class='btn btn-{{customForm.invalid || !formioFormObject?.components?.length ? "secondary":"success"}} float-right' type="submit" [disabled]="customForm.invalid || loaders?.processing || !formioFormObject?.components?.length" >
                                       {{loaders?.msg}}
                                       <i class='fa fa-save' *ngIf="!loaders?.processing"></i>
-                                      <i class="fa-spinner fa-spin" *ngIf="loaders?.processing"></i>
+                                      <i class="fa fa-spinner fa-spin" *ngIf="loaders?.processing"></i>
                                      </button>
 
                                   </div>

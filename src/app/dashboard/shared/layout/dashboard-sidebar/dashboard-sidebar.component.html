@@ -10,18 +10,18 @@
                 <li class="menu-title">Main</li>
 
                 <li>
-                    <a routerLink="/dashboard" class="waves-effect">
+                    <a (click)="reRoute('/dashboard')"  class="waves-effect">
                         <i class="dripicons-device-desktop"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-
                 <li>
-                  <a routerLink="/forms" class="waves-effect">
+                  <a  (click)="reRoute('/dashboard/forms')" class="waves-effect">
                       <i class="dripicons-blog"></i>
                       <span>Forms</span>
                   </a>
               </li>
+
 
 <!--
               <li>

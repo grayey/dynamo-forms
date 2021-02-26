@@ -85,14 +85,14 @@ export const tableRun = (data, tableId = '', tableTitle = '') => {
       table.buttons().container()
         .appendTo(`#${tId}_wrapper .col-md-6:eq(0)`);
 
-    }, 1);
+    }, 10);
   });
 };
 
 export const tableRerender =  (data, tableId = '', tableTitle = '') => {
-  $(document).ready( async () => {
+  $(document).ready(() => {
     if ($.fn.DataTable.isDataTable(`#${tableId}`)) {
-     await $(`#${tableId}`).DataTable().destroy();
+     $(`#${tableId}`).DataTable().clear().destroy(); // remember .clear()!!
     }
     tableRun(data, tableId, tableTitle);
 

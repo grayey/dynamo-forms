@@ -7,3 +7,6 @@
 @import "assets/css/icons.min.css";
 @import "assets/css/app.min.css";
 
+button:disabled{
+  cursor:not-allowed !important;
+}

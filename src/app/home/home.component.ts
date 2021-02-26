@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
    * This method forwards user into app
    */
   public forward = (): void => {
-    this.router.navigateByUrl('/pay');
+    this.router.navigateByUrl('/dashboard');
   }
 
 }

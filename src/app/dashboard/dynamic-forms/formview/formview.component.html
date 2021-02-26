@@ -1,0 +1,53 @@
+
+                <div class="page-content">
+                  <div class="container-fluid">
+
+
+                      <div class='row pb-2 border-bottom'>
+                        <div class='col-md-12'>
+
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                                  <li class="breadcrumb-item">Forms | Submissions</li>
+                                  <li class="breadcrumb-item active" aria-current="page">{{formTitle|titlecase}}</li>
+                                </ol>
+                              </nav>
+
+                        </div>
+
+
+                      </div>
+
+
+                      <div class="row">
+                          <div class="col-12">
+                           <div class="card">
+                             <div class='card-header'>
+                               <h3>{{formTitle | titlecase}}</h3>
+                             </div>
+
+                              <div class="card-body">
+                                <!-- <formio [form]="'https://iisyskvcoctczgc.form.io/invoice'"
+                                options='{
+                                  "hooks": {
+                                    "beforeSubmit": (submission, callback) => {
+                                        console.log({submission}, "jshhs");
+                                        // Do something asynchronously.
+
+                                    }
+                                  }
+                                }'
+                                ></formio> -->
+                                <formio [src]="formPath" (submit)="onSubmit($event)"></formio>
+                              </div>
+                           </div>
+                          </div>
+                          <!-- end col -->
+                      </div>
+                      <!-- end row -->
+
+                  </div>
+                  <!-- container-fluid -->
+              </div>
+              <!-- End Page-content -->

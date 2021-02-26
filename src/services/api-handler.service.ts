@@ -26,6 +26,7 @@ export class ApiHandlerService extends ApiConfig{
    */
   public get(path: string, paginator?): Observable<any> {
     const url = `${ApiHandlerService.API_BASE_URL}${path}`;
+    ApiHandlerService.API_BASE_URL = environment.API_BASE_URL;
     return this.http.get(`${url}`, this.headers).retryWhen((errors) => {
         return errors
           .mergeMap((error) => this.errorHandler(error))
@@ -47,6 +48,7 @@ export class ApiHandlerService extends ApiConfig{
   public post(path: string, data?: any): Observable<any> {
 
     const url = `${ApiHandlerService.API_BASE_URL}${path}`;
+    ApiHandlerService.API_BASE_URL = environment.API_BASE_URL;
     return this.http.post(url, (data || {}), this.headers)
       .retryWhen((errors) => {
         return errors
@@ -76,6 +78,7 @@ export class ApiHandlerService extends ApiConfig{
    */
   public put(path: string, data?: Object): Observable<any> {
     const url = `${ApiHandlerService.API_BASE_URL}${path}`;
+    ApiHandlerService.API_BASE_URL = environment.API_BASE_URL;
     return this.http.put(url, (data || {}) || {}, this.headers)
       .retryWhen((errors) => {
         return errors
@@ -97,6 +100,7 @@ export class ApiHandlerService extends ApiConfig{
   public delete(path: string): Observable<any> {
     this.headers = {headers: this.setHeaders()};
     const url = `${ApiHandlerService.API_BASE_URL}${path}`;
+    ApiHandlerService.API_BASE_URL = environment.API_BASE_URL; //set back in case of subsequent calls
     return this.http.delete(url, this.headers)
       .retryWhen((errors) => {
         return errors
@@ -105,7 +109,10 @@ export class ApiHandlerService extends ApiConfig{
           .take(2);
       })
       .catch(this.errorHandler)
-      .map((res) => res['body']);
+      .map((res) => {
+        console.log(res['body'],'RESSS');
+        return res;
+      });
   }
 
 
@@ -116,7 +123,13 @@ export class ApiHandlerService extends ApiConfig{
    * @returns {any}
    */
   private errorHandler(err) {
-    return Observable.throw(err || 'Server error');
+
+    try{
+      return Observable.throw(err || 'Server error');
+    }catch(e){
+      return Observable.from([ ])
+    }
+
   }
 
 }

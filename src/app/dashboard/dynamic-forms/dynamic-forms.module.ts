@@ -9,9 +9,11 @@ import DYNAMIC_FORM_ROUTES from './dynamic-forms.routing';
 import { AppConfig } from './config';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
+import { FormviewComponent } from './formview/formview.component';
+import { SubmissionsComponent } from './submissions/submissions.component';
 
 @NgModule({
-  declarations: [AppFormioComponent, CreateComponent, EditComponent],
+  declarations: [AppFormioComponent, CreateComponent, EditComponent, FormviewComponent, SubmissionsComponent],
   imports: [
     CommonModule,
     FormsModule,
