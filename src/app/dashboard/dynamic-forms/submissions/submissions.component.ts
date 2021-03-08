@@ -45,7 +45,7 @@ export class SubmissionsComponent implements OnInit {
   private authenticate = async () => {
     this.loaders.fetching = true;
     if(localStorage.getItem('X_JWT_TOKEN')) {
-      return await this.getAllSubmissions();
+      // return await this.getAllSubmissions();
     }
     await this.submissionsService.authenticate(AuthCredentials).subscribe(
      async (loginResponse)=>{

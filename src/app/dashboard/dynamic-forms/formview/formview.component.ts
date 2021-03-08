@@ -37,7 +37,7 @@ export class FormviewComponent implements OnInit, OnDestroy {
    */
   private authenticate = async () => {
     if(localStorage.getItem('X_JWT_TOKEN')) {
-      return;
+      // return;
     }
     await this.formsService.authenticate(AuthCredentials).subscribe(
      async (loginResponse)=>{
